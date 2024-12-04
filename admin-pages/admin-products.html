@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Product Listing</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <nav class="admin-nav">
+        <a href="admin-products.html">
+            <img src="logo2.jpg" alt="Site Logo" class="logo">
+        </a>
+        <a href="admin-upload.html">Bulk Upload</a>
+        <a href="admin-products.html">Product Listing</a>
+        <a href="/logout">Sign Out</a>
+    </nav>
+
+    <main class="admin-container">
+        <h1>Product Listing</h1>
+        <div class="product-search">
+            <input type="text" placeholder="Search by name or category" id="search-bar">
+            <button type="button">Search</button>
+        </div>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--hard code example-->
+                <tr>
+                    <td>1</td>
+                    <td>Product Name</td>
+                    <td>Product Description</td>
+                    <td>Category Name</td>
+                    <td>$9.99</td>
+                    <td>
+                        <a href="product-edit.html?productId=1">Edit</a> |
+                        <button>Delete</button> |
+                        <button>Archive</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="add-product">Add New Product</button>
+    </main>
+</body>
+</html>
