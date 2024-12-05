@@ -1,19 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Optional, for Cross-Origin Resource Sharing
-const productRoutes = require('./routes/product.routes'); // Your routes for products
-const userRoutes = require('./routes/users.routes'); // Your routes for users
+const cors = require('cors'); 
+const productRoutes = require('./routes/product.routes'); 
+const userRoutes = require('./routes/users.routes'); 
 const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000; // Default to port 3000
+const PORT = process.env.PORT || 3000; 
 
-// Serve static files from the 'public' folder
+
 app.use(express.static('public'));
 
-// Serve static HTML files from the 'view' folder
+
 app.use(express.static('view'));
 
-// Optional: Replace the root route '/' to serve 'index.html'
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'view', 'index.html'));
 });

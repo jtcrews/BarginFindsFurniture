@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controller/users.controller'); // Updated path
+const userController = require('../controller/users.controller'); 
 
 router.get('/', userController.getAll);
 router.get('/:id', userController.getById);

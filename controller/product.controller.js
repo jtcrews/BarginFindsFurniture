@@ -12,21 +12,37 @@ const productController = {
         }
     },
 
-    // Get a product by ID
-    getById: async (req, res) => {
-        const { id } = req.params;  // Retrieve product ID from URL params
-        try {
-            const product = await productModel.getProductById(id);  // Await the DB call
-            if (!product) {
-                return res.status(404).json({ message: 'Product not found' });
-            }
-            res.json(product);  // Return the product as JSON
-        } catch (error) {
-            console.error('Error fetching product:', error);
-            res.status(500).json({ error: error.message });
+// Get a product by ID
+
+getById: async (req, res) => {
+    try {
+        const product = await productModel.getProductById(req.params.id); 
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).json({ error: 'Product not found.' }); 
         }
-    },
-    
+    } catch (error) {
+        console.error(`Error fetching product with ID ${req.params.id}:`, error); 
+        res.status(500).json({ error: 'Failed to fetch product.' });
+    }
+},
+
+
+/**
+getById: async (req, res) => {
+    const { id } = req.params;  // Extracting the product ID from the URL
+    try {
+        const product = await productModel.getProductById(id);
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        res.json(product);  // Sending back the product as JSON
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+},
+    */
 
     // Create a new product
     create: async (req, res) => {

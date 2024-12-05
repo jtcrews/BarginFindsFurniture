@@ -1,8 +1,9 @@
 // models/product.models.js
-const db = require('./db'); // Assume db is set up to connect to your SQLite database
+const db = require('./db'); 
+const { query } = require('./db'); // Import 'query' from db.js
 
 function getColumnNames() {
-    return ['id', 'name', 'description', 'price', 'category_id']; // Add all valid column names here
+    return ['id', 'name', 'description', 'price', 'category_id']; 
 }
 
 function getAll() {
@@ -58,18 +59,21 @@ function deleteProduct(id) {
     return db.run(sql, [id]); // Deletes a product
 }
 
-// Get a single product by ID
+
 function getProductById(id) {
-    const sql = `SELECT * FROM products WHERE id = ?`;
-    return new Promise((resolve, reject) => {
-        db.get(sql, [id], (err, row) => {
-            if (err) {
-                return reject(err); // Reject on error
-            }
-            resolve(row); // Resolve with the fetched row
-        });
+    const sql = `SELECT * FROM products WHERE id = ?;`;
+    console.log('Running query:', sql, 'with id:', id);
+    return db.query(sql, [id]).then(rows => {
+      if (rows.length > 0) {
+        return rows[0]; // Return the first row
+      } else {
+        console.log('No product found for id:', id);
+        return null; // No product found
+      }
     });
-}
+  }
+  
+
 // Export the functions
 module.exports = {
   getAll,
